@@ -1,7 +1,7 @@
 Feature: Registration flow feature
 
   @ExecutaAcestTC
-  Scenario: The Registration page can be accesed from navigation bar
+  Scenario: The Registration page can be accessed from navigation bar
     Given "https://demo-opencart.com/" is accessed
     When user clicks on register buttons from navigation bar
     Then "/index.php?route=account/register" is present within the current url
