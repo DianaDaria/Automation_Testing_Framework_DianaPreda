@@ -11,8 +11,6 @@ import pageobjects.RegisterPage;
 public class TestJunitRunner {
     WebDriverManager webDriverManagerObiect = new WebDriverManager("Chrome");
 
-    @BeforeAll
-
     @BeforeEach
     public void configureTestPreconditions() {
         webDriverManagerObiect.getDriverul().get("https://demo-opencart.com/");
@@ -29,9 +27,6 @@ public class TestJunitRunner {
     public void registerPageIsOpened() throws InterruptedException {
         HomePage homePage = new HomePage(webDriverManagerObiect.getDriverul());
         homePage.navigateToRegisterPageViaHeader();
-
-        boolean containsCorrectUrlEndpoint = webDriverManagerObiect.getDriverul().getCurrentUrl().contains("/index.php?route=account/register");
-        Assert.assertTrue("The actual url does not contain the correct endpoint", containsCorrectUrlEndpoint);
     }
 
     @Test
@@ -48,7 +43,7 @@ public class TestJunitRunner {
 
         String expectedErrorText = "Warning: You must agree to the Privacy Policy!";
         String actualErrorText = errorMessageForLackOfPrivacy.getText();
-
+        Thread.sleep(10000);
         Assertions.assertEquals(expectedErrorText, actualErrorText, "The error message is not corect, please check the actual result.");
     }
 }
