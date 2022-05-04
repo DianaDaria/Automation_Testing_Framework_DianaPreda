@@ -30,16 +30,36 @@ public class RegisterPage extends Page {
     @FindBy(xpath = "//*[@id=\"content\"]/form/div/div/input[2]")
     private WebElement continueButton;
 
+    @FindBy(xpath = "//*[@id=\"content\"]/form/div/div/input[1]")
+    private WebElement privacyCheckBox;
+
+    @FindBy(xpath = "//div[@class=\"text-danger\"]")
+    private WebElement errorMessage;
+
     public void populateRegisterForWithData(String firstName, String lastName, String email, String phone, String password, String confirmPassword) {
-        firstNameInputField.sendKeys(firstName);
-        lastNameInputField.sendKeys(lastName);
-        emailInputField.sendKeys(email);
-        phoneInputField.sendKeys(phone);
-        passwordInput.sendKeys(password);
-        confirmPasswordInputField.sendKeys(confirmPassword);
+        try {
+            firstNameInputField.sendKeys(firstName);
+            lastNameInputField.sendKeys(lastName);
+            emailInputField.sendKeys(email.toString());
+            phoneInputField.sendKeys(phone);
+            passwordInput.sendKeys(password);
+            confirmPasswordInputField.sendKeys(confirmPassword);
+        }
+        catch (IllegalArgumentException exceptiaPrinsa){
+            System.out.println("O variabila era nula");
+        }
+
     }
 
     public void clickContinueBtn() {
         continueButton.click();
+    }
+
+    public void clickCheckBox() {
+        privacyCheckBox.click();
+    }
+
+    public String getTheErrorMessageText(){
+        return errorMessage.getText();
     }
 }
