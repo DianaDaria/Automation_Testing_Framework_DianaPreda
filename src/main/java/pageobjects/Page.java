@@ -1,5 +1,7 @@
 package pageobjects;
 
+
+import managers.WebDriverWaiterManager;
 import managers.PropertiesManager;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
@@ -14,9 +16,12 @@ import java.net.URL;
 public class Page {
     protected WebDriver driver;
 
+    protected WebDriver driver;
+
     public Page(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
+        this.driver = driver;
     }
 
     @FindBy(xpath = "//*[@id=\"top-links\"]/ul/li[2]/a/i")
@@ -34,7 +39,10 @@ public class Page {
     protected final String BASE_URL = PropertiesManager.getBaseUrl();
 
     public void navigateToRegisterPageViaHeader() {
+        WebDriverWaiterManager.waitElementToBeVisible(myAccountIcon, driver);
         myAccountIcon.click();
+        WebDriverWaiterManager.waitElementToBeVisible(registerBtn, driver);
+        WebDriverWaiterManager.waitElementToBeClickable(registerBtn, driver);
         registerBtn.click();
     }
 

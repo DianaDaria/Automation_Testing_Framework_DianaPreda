@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.time.Duration;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -31,6 +32,9 @@ public class WebDriverManager {
         } else {
             System.out.println("Nu exista un astfel de browser implementat!");
         }
+
+        driverul.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driverul.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(35));
     }
 
     public WebDriver getDriverul() {

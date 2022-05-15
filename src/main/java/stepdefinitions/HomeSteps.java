@@ -8,7 +8,7 @@ public class HomeSteps {
     private TestContext context;
     private HomePage homePage;
 
-    public HomeSteps(TestContext testContext){
+    public HomeSteps(TestContext testContext) {
         context = testContext;
         homePage = new HomePage(context.getWebDriverManager().getDriverul());
     }
