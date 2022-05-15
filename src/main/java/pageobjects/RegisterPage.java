@@ -36,6 +36,13 @@ public class RegisterPage extends Page {
     @FindBy(xpath = "//div[@class=\"text-danger\"]")
     private WebElement errorMessage;
 
+    private final String ENDPOINT = "/index.php?route=account/register";
+
+    public RegisterPage goToPage() {
+        driver.get(BASE_URL + ENDPOINT);
+        return this;
+    }
+
     public void populateRegisterForWithData(String firstName, String lastName, String email, String phone, String password, String confirmPassword) {
         try {
             firstNameInputField.sendKeys(firstName);
@@ -44,8 +51,7 @@ public class RegisterPage extends Page {
             phoneInputField.sendKeys(phone);
             passwordInput.sendKeys(password);
             confirmPasswordInputField.sendKeys(confirmPassword);
-        }
-        catch (IllegalArgumentException exceptiaPrinsa){
+        } catch (IllegalArgumentException exceptiaPrinsa) {
             System.out.println("O variabila era nula");
         }
 
@@ -59,7 +65,11 @@ public class RegisterPage extends Page {
         privacyCheckBox.click();
     }
 
-    public String getTheErrorMessageText(){
+    public String getTheErrorMessageText() {
         return errorMessage.getText();
+    }
+
+    public String getENDPOINT() {
+        return ENDPOINT;
     }
 }
