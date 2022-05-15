@@ -8,7 +8,7 @@ Feature: Registration flow feature
 
   Scenario: Open cart page is accessible
     When "https://demo-opencart.com/" is accessed
-    Then "https://demo.opencart.com/" is present within the current url
+    Then "https://demo-opencart.com/" is present within the current url
 
   @LectieAvansata
   Scenario Outline: Invalid email address error is displayed when providing invalid email data for <affectedFiled>

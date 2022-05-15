@@ -1,5 +1,6 @@
 package pageobjects;
 
+import managers.WebDriverWaiterManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,8 +8,11 @@ import org.openqa.selenium.support.PageFactory;
 
 public class Page {
 
+    protected WebDriver driver;
+
     public Page(WebDriver driver) {
         PageFactory.initElements(driver, this);
+        this.driver = driver;
     }
 
     @FindBy(xpath = "//*[@id=\"top-links\"]/ul/li[2]/a/i")
@@ -24,7 +28,10 @@ public class Page {
     private WebElement searchBtn;
 
     public void navigateToRegisterPageViaHeader() {
+        WebDriverWaiterManager.waitElementToBeVisible(myAccountIcon, driver);
         myAccountIcon.click();
+        WebDriverWaiterManager.waitElementToBeVisible(registerBtn, driver);
+        WebDriverWaiterManager.waitElementToBeClickable(registerBtn, driver);
         registerBtn.click();
     }
 
