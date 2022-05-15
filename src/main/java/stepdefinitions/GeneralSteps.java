@@ -5,6 +5,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
+import pageobjects.Page;
 import utils.TestContext;
 
 public class GeneralSteps {
@@ -15,14 +16,18 @@ public class GeneralSteps {
         this.context = testContext;
     }
 
-    @Given("^\"([^\"]*)\" is accessed$")
-    public void isAccessed(String adresaUrl) throws Throwable {
-        context.getWebDriverManager().getDriverul().get(adresaUrl);
+    @Then("^\"([^\"]*)\" is present within the current url$")
+    public void isPresentWithinTheCurrentUrl(String pageName) {
+        Page.pageContainsCorrectEndpoint(pageName, context.getWebDriverManager().getDriverul());
     }
 
-    @Then("^\"([^\"]*)\" is present within the current url$")
-    public void isPresentWithinTheCurrentUrl(String keyWord) throws Throwable {
-        boolean containsCorrectUrlEndpoint = context.getWebDriverManager().getDriverul().getCurrentUrl().contains(keyWord);
-        Assert.assertTrue("The actual url does not contain the correct endpoint", containsCorrectUrlEndpoint);
+    @Given("^\"([^\"]*)\" is accessed$")
+    public void isAccessed(String pageName) {
+        Page.navigateToPage(pageName, context.getWebDriverManager().getDriverul());
+    }
+
+    @Then("^Correct \"([^\"]*)\" endpoint dislayed$")
+    public void correctEndpointDislayed(String pageName) {
+        Page.pageContainsCorrectEndpoint(pageName, context.getWebDriverManager().getDriverul());
     }
 }

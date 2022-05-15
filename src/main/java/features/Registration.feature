@@ -3,8 +3,9 @@ Feature: Registration flow feature
   @ExecutaAcestTC
   Scenario: The Registration page can be accessed from navigation bar
     Given "https://demo-opencart.com/" is accessed
+    Given "HomePage" is accessed
     When user clicks on register buttons from navigation bar
-    Then "/index.php?route=account/register" is present within the current url
+    Then Correct "RegisterPage" endpoint dislayed
 
   Scenario: Open cart page is accessible
     When "https://demo-opencart.com/" is accessed
@@ -12,8 +13,7 @@ Feature: Registration flow feature
 
   @LectieAvansata
   Scenario Outline: Invalid email address error is displayed when providing invalid email data for <affectedFiled>
-    Given "https://demo-opencart.com/" is accessed
-    And user clicks on register buttons from navigation bar
+    Given "RegisterPage" is accessed
     When the register fields are populated with the following data:
       | firstName       | <first name>   |
       | lastName        | <last name>    |
